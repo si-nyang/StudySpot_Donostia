@@ -1,0 +1,52 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Environment files
+.env
+.env.*
+
+# Node modules (if using JS)
+node_modules/
+
+# Build / dist folders
+dist/
+build/
+out/
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Java / Tomcat
+*.class
+*.jar
+*.war
+*.ear
+target/
+bin/
+logs/
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+
+# Gradle
+.gradle/
+build/
+
+# Python (just in case)
+__pycache__/
+*.pyc
+
+# Mac / Linux temp files
+*~
