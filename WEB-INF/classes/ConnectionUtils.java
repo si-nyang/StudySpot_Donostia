@@ -14,7 +14,7 @@ public class ConnectionUtils {
             Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
 			ServletContext context = config.getServletContext();
 			System.out.println("realPath: " + context.getRealPath("Locations.mdb"));
-			String url=new String("jdbc:odbc:Driver={Microsoft Access Driver (*.mdb)};Dbq=" + context.getRealPath("northbrick.mdb"));
+			String url=new String("jdbc:odbc:Driver={Microsoft Access Driver (*.mdb)};Dbq=" + context.getRealPath("Locations.mdb"));
             connection=DriverManager.getConnection(url); 
         } catch(Exception e) {
             e.printStackTrace();

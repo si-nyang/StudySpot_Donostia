@@ -26,6 +26,8 @@ public class LocationList extends HttpServlet {
         } else {
             locationList = LocationData.getLocations(connection);
         }
+
+        System.out.println(locationList.size());
         for(int i=0; i< locationList.size(); i++){
                 LocationData location = locationList.elementAt(i);
                 toClient.println("<tr>");
@@ -34,7 +36,6 @@ public class LocationList extends HttpServlet {
                 toClient.println("<td>" + location.category + " </td>");
                 toClient.println("<td>" + location.address + " </td>");
                 toClient.println("<td><img src='/images/1_1.jpg' alt='img'></td>");
-                toClient.println("<td><a href='index.html'>" + "More Info</a></td>");
                 toClient.println("</tr>");
         }
 
