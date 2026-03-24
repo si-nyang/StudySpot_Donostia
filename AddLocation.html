@@ -5,25 +5,45 @@
     <table border="1" align="center">
         <tr>
             <td>Name</td>
-            <td><input type="text"></td>
+            <td><input type="text" name="name"></td>
         </tr>
         <tr>
             <td>Description</td>
-            <td><input type="text"></td>
+            <td><input type="text" name="description"></td>
         </tr>
         <tr>
             <td>Address</td>
-            <td><input type="text"></td>
+            <td><input type="text" name="address"></td>
         </tr>
         <tr>
             <td>Hours</td>
-            <td><input type="text"></td>
+            <td><input type="text" name="hours"></td>
         </tr>
         <tr>
-            <td>Tags (quiet, WiFi)</td>
-            <td><input type="text"></td>
+            <td>Tags</td>
+            <td>
+            <p>
+                <input type="checkbox" id="quiet" name="tags">
+                <label for="quiet">quiet</label>
+                <input type="checkbox" id="wifi" name="tags">
+                <label for = "wifi">wifi</label>
+                <input type="checkbox" id="library" name="tags">
+                <label for = "library">library</label>
+                <input type="checkbox" id="coffee" name="tags">
+                <label for = "coffee">coffee</label>
+            </p>
+            <p>
+                <input type="checkbox" id="laptop" name="tags">
+                <label for = "laptop">laptop friendly</label>
+                <input type="checkbox" id="food" name="tags">
+                <label for = "food">food</label>
+                <input type="checkbox" id="cozy" name="tags">
+                <label for = "cozy">cozy</label>
+            </p>
+            </td>
         </tr>
-        <tr><td><input type="submit" value="Submit"></td></tr>
+        <tr><td></td><td><input type="submit" value="Submit" align=""></td></tr>
     </table>
+    
 </form>
 </body>
