@@ -11,4 +11,14 @@
         <url-pattern>/LocationDetail</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>LocationList</servlet-name>
+        <servlet-class>LocationList</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>LocationList</servlet-name>
+        <url-pattern>/LocationList</url-pattern>
+    </servlet-mapping>
+
 </web-app>
