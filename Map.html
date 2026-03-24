@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Add a Map with Markers</title>
+
+    <style>
+        gmp-map {
+            height: 100%;
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <gmp-map center="43.304933, -2.010559" zoom="13" map-id="DEMO_MAP_ID">
+        <gmp-advanced-marker position="43.304675, -2.010136" title="Tecnun"></gmp-advanced-marker>
+        <gmp-advanced-marker position="43.306169, -2.008618" title="EHU"></gmp-advanced-marker>
+    </gmp-map>
+
+    <script src="./config.js"></script>
+    <script src="./index.js"></script>
+</body>
+
+</html>
