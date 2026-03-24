@@ -50,3 +50,8 @@ __pycache__/
 
 # Mac / Linux temp files
 *~
+
+# API keys / config
+config.js
+config/*.js
+*.key
