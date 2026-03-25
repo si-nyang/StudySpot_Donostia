@@ -22,13 +22,13 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>addLocation</servlet-name>
-        <servlet-class>addLocation</servlet-class>
+        <servlet-name>AddLocation</servlet-name>
+        <servlet-class>AddLocation</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>addLocation</servlet-name>
-        <url-pattern>/addLocation</url-pattern>
+        <servlet-name>AddLocation</servlet-name>
+        <url-pattern>/AddLocation</url-pattern>
     </servlet-mapping>
 
     <servlet>
