@@ -5,7 +5,7 @@ import javax.servlet.http.*;
 import java.sql.Connection;
 
 @SuppressWarnings("serial")
-public class CustomerInsert extends HttpServlet {
+public class addLocation extends HttpServlet {
     Connection connection;
 
     public void init(ServletConfig config) throws ServletException {
@@ -15,8 +15,8 @@ public class CustomerInsert extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException  {
         res.setContentType("text/html");
-        String selectedTags = req.querySelectorAll("input[name='tags']:checked");
-        selectedTags = Array.from(selectedTags).map(tag->tag.value.join(","));
+        String[] tags = req.getParameterValues("tags");
+        String selectedTags = String.join(",", tags);
         LocationData location  = new LocationData(
                     req.getParameter("category"),
                     req.getParameter("name"),
@@ -27,8 +27,8 @@ public class CustomerInsert extends HttpServlet {
         );
         int n = LocationData.InsertLocation(connection, location);
 
-        res.sendRedirect("LocationList.html" );
         res.setContentType("text/html");
+        res.sendRedirect("LocationList.html" );
         PrintWriter toClient = res.getWriter();
 
         toClient.close();
