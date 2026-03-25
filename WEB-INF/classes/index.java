@@ -55,7 +55,7 @@ public class index extends HttpServlet {
         out.println("        </a>");
 
         // Card 3: Add Location
-        out.println("        <a class='preview-card' href='AddLocation.html'>");
+        out.println("        <a class='preview-card' href='addLocation'>");
         out.println("          <div class='preview-body'>");
         out.println("            <h3>3. Add Location</h3>");
         out.println("            <p>Share a new study spot.</p>");
