@@ -21,4 +21,14 @@
         <url-pattern>/LocationList</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>addLocation</servlet-name>
+        <servlet-class>addLocation</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>addLocation</servlet-name>
+        <url-pattern>/addLocation</url-pattern>
+    </servlet-mapping>
+
 </web-app>
