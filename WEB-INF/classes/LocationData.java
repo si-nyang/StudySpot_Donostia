@@ -163,17 +163,18 @@ public class LocationData {
     }
     
     public static int InsertLocation(Connection connection, LocationData location) {
-        String sql ="INSERT INTO Locations (Category, LocationName, Address, Hours, Tags) "
-            + "VALUES (?, ?, ?, ?, ?)";
+        String sql ="INSERT INTO Locations (Category, LocationName, Description, Address, Hours, Tags) "
+            + "VALUES (?, ?, ?, ?, ?,?)";
         System.out.println("updateLocation: " + sql);
         int n = 0;
         try {
             PreparedStatement stmtUpdate= connection.prepareStatement(sql);
             stmtUpdate.setString(1,location.category);
 			stmtUpdate.setString(2,location.locationName);
-            stmtUpdate.setString(3,location.address);
-            stmtUpdate.setString(4,location.hours);
-            stmtUpdate.setString(5,location.tags);
+            stmtUpdate.setString(3,location.description);
+            stmtUpdate.setString(4,location.address);
+            stmtUpdate.setString(5,location.hours);
+            stmtUpdate.setString(6,location.tags);
 			
             n = stmtUpdate.executeUpdate();
             stmtUpdate.close();
