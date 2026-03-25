@@ -3,8 +3,8 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
-@WebServlet("/home")
-public class home extends HttpServlet {
+@WebServlet(urlPatterns = {"/index", ""})
+public class index extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html; charset=UTF-8");
         response.setCharacterEncoding("UTF-8"); 
@@ -37,7 +37,7 @@ public class home extends HttpServlet {
         out.println("      <div class='index-grid'>");
 
         // Card 1: List Locations
-        out.println("        <a class='preview-card' href='ListLocations.html'>");
+        out.println("        <a class='preview-card' href='LocationList'>");
         out.println("          <div class='preview-body'>");
         out.println("            <h3>1. List Page</h3>");
         out.println("            <p>View all available study spots.</p>");
