@@ -17,14 +17,15 @@ public class CustomerInsert extends HttpServlet {
         res.setContentType("text/html");
         String selectedTags = req.querySelectorAll("input[name='tags']:checked");
         selectedTags = Array.from(selectedTags).map(tag->tag.value.join(","));
-        LocationData  = LocationData(
+        LocationData location  = new LocationData(
+                    req.getParameter("category"),
                     req.getParameter("name"),
                     req.getParameter("description"),
                     req.getParameter("address"),
                     req.getParameter("hours"),
                     selectedTags
         );
-        int n = CustomerData.insertLocation(connection, customer);
+        int n = LocationData.InsertLocation(connection, location);
 
         res.sendRedirect("LocationList.html" );
         res.setContentType("text/html");
