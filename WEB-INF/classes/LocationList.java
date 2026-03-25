@@ -19,12 +19,12 @@ public class LocationList extends HttpServlet {
         String category = req.getParameter("category");
         toClient.println("<h1 align=\"center\"><a href=\"index.html\">Study Spots Donostia</a></h1>");
         toClient.println("<table border='1' align='center'>");
-        toClient.println("<tr><td>Name</td><td>Rating</td><td>Category</td><td>Location</td><td>Photo</td></tr>");
+        toClient.println("<tr><td>Name</td><td>Rating</td><td>Category</td><td>Location</td><td>Photo</td><td>More Info</td></tr>");
         Vector<LocationData> locationList;
         if (category != null) {
-            locationList = LocationData.getLocations(connection, category);
+            locationList = LocationData.getLocationList(connection, category);
         } else {
-            locationList = LocationData.getLocations(connection);
+            locationList = LocationData.getLocationList(connection);
         }
 
         System.out.println(locationList.size());
@@ -36,6 +36,7 @@ public class LocationList extends HttpServlet {
                 toClient.println("<td>" + location.category + " </td>");
                 toClient.println("<td>" + location.address + " </td>");
                 toClient.println("<td><img src='/images/1_1.jpg' alt='img'></td>");
+                toClient.println("<td><a href='LocationDetail?id=" + location.id + "'>Detail</a></td>");
                 toClient.println("</tr>");
         }
 

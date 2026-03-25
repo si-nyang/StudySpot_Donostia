@@ -12,7 +12,7 @@ public class LocationData {
     String address;
     String description;
     String hours;
-    int photos;
+    int photos; // # of photos
     String tags;
     double avgRating;
     int reviews;
@@ -25,6 +25,19 @@ public class LocationData {
         this.locationName = locationName;
         this.address= address;
         this.avgRating=avgRating;
+    }
+
+    LocationData (int id, String locationName, double avgRating, String category, String description, String address,
+                    String hours, String tags, int photos) {
+        this.id = id;
+        this.locationName = locationName;
+        this.avgRating=avgRating;
+        this.category = category;
+        this.description = description;
+        this.address= address;
+        this.hours = hours;
+        this.tags = tags;
+        this.photos = photos;
     }
     
     LocationData (int id, String category, String locationName, String address, String description, String hours, int photos, String tags, double avgRating, int reviews, float lon, float lat) {
@@ -42,11 +55,11 @@ public class LocationData {
         this.lat=lat;
     }
 
-    public static Vector<LocationData> getLocations(Connection connection, String category) {
+    public static Vector<LocationData> getLocationList(Connection connection, String category) {
         Vector<LocationData> vec = new Vector<LocationData>();
         String sql = "SELECT ID, Category, LocationName, Address, Description, Hours , Photos, Tags, AvgRating, Reviews, Longitude, Latitude FROM Locations";
         sql += " WHERE Category=?";
-        System.out.println("getLocations: " + sql);
+        System.out.println("getLocationList: " + sql);
         try {
             PreparedStatement pstmt=connection.prepareStatement(sql);
             pstmt.setString(1, category);
@@ -61,7 +74,7 @@ public class LocationData {
                     result.getString("Hours"),
                     Integer.parseInt(result.getString("Photos")),
                     result.getString("Tags"),
-                    Integer.parseInt(result.getString("AvgRating")),
+                    Double.parseDouble(result.getString("AvgRating")),
                     Integer.parseInt(result.getString("Reviews")),
                     Float.parseFloat(result.getString("Longitude")),
                     Float.parseFloat(result.getString("Latitude"))
@@ -70,45 +83,75 @@ public class LocationData {
             }
         } catch(SQLException e) {
             e.printStackTrace();
-            System.out.println("Error in getLocations: " + sql + " Exception: " + e);
+            System.out.println("Error in getLocationList: " + sql + " Exception: " + e);
         }
         return vec;
     }
     
-    public static Vector<LocationData> getLocations(Connection connection) {
-    Vector<LocationData> vec = new Vector<LocationData>();
-    String sql = "SELECT ID, Category, LocationName, Address, AvgRating FROM Locations";
-    System.out.println("getLocations: " + sql);
+    public static Vector<LocationData> getLocationList(Connection connection) {
+        Vector<LocationData> vec = new Vector<LocationData>();
+        String sql = "SELECT ID, Category, LocationName, Address, AvgRating FROM Locations";
+        System.out.println("getLocationList: " + sql);
 
-    try {
-        System.out.println("before prepareStatement");
-        PreparedStatement pstmt = connection.prepareStatement(sql);
+        try {
+            System.out.println("before prepareStatement");
+            PreparedStatement pstmt = connection.prepareStatement(sql);
 
-        System.out.println("before executeQuery");
-        ResultSet result = pstmt.executeQuery();
+            System.out.println("before executeQuery");
+            ResultSet result = pstmt.executeQuery();
 
-        System.out.println("after executeQuery");
+            System.out.println("after executeQuery");
 
-        while(result.next()) {
-            System.out.println("reading one row");
+            while(result.next()) {
+                System.out.println("reading one row");
 
-            LocationData location = new LocationData(
-                Integer.parseInt(result.getString("ID")),
-                result.getString("Category"),
-                result.getString("LocationName"),
-                result.getString("Address"),
-                Double.parseDouble(result.getString("AvgRating"))
-            );
-            vec.addElement(location);
+                LocationData location = new LocationData(
+                    Integer.parseInt(result.getString("ID")),
+                    result.getString("Category"),
+                    result.getString("LocationName"),
+                    result.getString("Address"),
+                    Double.parseDouble(result.getString("AvgRating"))
+                );
+                vec.addElement(location);
+            }
+
+            System.out.println("after while, rows=" + vec.size());
+
+        } catch(Exception e) {
+            e.printStackTrace();
+            System.out.println("Error in getLocationList: " + sql + " Exception: " + e);
         }
-
-        System.out.println("after while, rows=" + vec.size());
-
-    } catch(Exception e) {
-        e.printStackTrace();
-        System.out.println("Error in getLocations: " + sql + " Exception: " + e);
+        return vec;
     }
-    return vec;
-}
    
+
+    public static LocationData getLocation(Connection connection, String id) {
+        String sql = "SELECT ID, Category, LocationName, Address, Description, Hours , Photos, Tags, AvgRating FROM Locations";
+        sql += " WHERE ID=?";
+
+        LocationData location = null;;
+        System.out.println("getLocation: " + sql);
+        try {
+            PreparedStatement pstmt=connection.prepareStatement(sql);
+            pstmt.setString(1, id);
+            ResultSet result = pstmt.executeQuery();
+            if(result.next()) {
+                location = new LocationData(
+                    Integer.parseInt(result.getString("ID")),
+                    result.getString("LocationName"),
+                    Double.parseDouble(result.getString("AvgRating")),
+                    result.getString("Category"),
+                    result.getString("Description"),
+                    result.getString("Address"),
+                    result.getString("Hours"),
+                    result.getString("Tags"),
+                    Integer.parseInt(result.getString("Photos"))
+                );
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error in getLocation: " + sql + " Exception: " + e);
+        }
+        return location;
+    }
 }
