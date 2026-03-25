@@ -56,7 +56,6 @@ public class LocationData {
     }
 
     LocationData (String category, String locationName, String address, String hours, String tags) {
-        this.id = id;
         this.category = category;
         this.locationName = locationName;
         this.address= address;
