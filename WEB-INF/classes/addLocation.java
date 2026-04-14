@@ -26,8 +26,8 @@ public class addLocation extends HttpServlet {
                     req.getParameter("description"),
                     req.getParameter("address"),
                     req.getParameter("hours"),
-                    req.getParameter("rating"),
-                    selectedTags
+                    selectedTags,
+                    Double.parseDouble(req.getParameter("ratings"))
         );
         int n = LocationData.InsertLocation(connection, location);
 

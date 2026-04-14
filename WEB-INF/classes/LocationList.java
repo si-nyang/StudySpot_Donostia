@@ -17,7 +17,7 @@ public class LocationList extends HttpServlet {
         res.setContentType("text/html");
         PrintWriter toClient = res.getWriter();
         String category = req.getParameter("category");
-        toClient.println("<h1 align=\"center\"><a href='/StudySpot_Donostia/index'>Study Spots Donostia</a></h1>");
+        toClient.println("<h1 align=\"center\"><a href=\"index.html\">Study Spots Donostia</a></h1>");
         toClient.println("<table border='1' align='center'>");
         toClient.println("<tr><td>Name</td><td>Rating</td><td>Category</td><td>Location</td><td>Photo</td><td>More Info</td></tr>");
         Vector<LocationData> locationList;
