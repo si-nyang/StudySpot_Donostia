@@ -55,9 +55,10 @@ public class LocationData {
         this.lat=lat;
     }
 
-    LocationData (String category, String locationName, String address, String hours, String tags) {
+    LocationData (String category, String locationName, String description, String address, String hours, String tags) {
         this.category = category;
         this.locationName = locationName;
+		this.description;
         this.address= address;
         this.hours = hours;
         this.tags = tags;
