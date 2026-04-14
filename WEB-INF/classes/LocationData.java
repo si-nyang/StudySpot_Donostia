@@ -164,8 +164,8 @@ public class LocationData {
     }
     
     public static int InsertLocation(Connection connection, LocationData location) {
-        String sql ="INSERT INTO Locations (Category, LocationName, Description, Address, Hours, Tags) "
-            + "VALUES (?, ?, ?, ?, ?,?)";
+        String sql ="INSERT INTO Locations (Category, LocationName, Description, Address, Hours, Tags, Rating) "
+            + "VALUES (?, ?, ?, ?, ?,?,?)";
         System.out.println("updateLocation: " + sql);
         int n = 0;
         try {
@@ -176,6 +176,7 @@ public class LocationData {
             stmtUpdate.setString(4,location.address);
             stmtUpdate.setString(5,location.hours);
             stmtUpdate.setString(6,location.tags);
+			stmtUpdate.setString(7,location.rating);
 			
             n = stmtUpdate.executeUpdate();
             stmtUpdate.close();
