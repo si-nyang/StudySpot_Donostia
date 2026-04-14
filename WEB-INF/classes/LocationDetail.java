@@ -1,50 +1,118 @@
 import java.io.*;
-import java.util.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import java.sql.Connection;
 
 @SuppressWarnings("serial")
 public class LocationDetail extends HttpServlet {
-    Connection connection;
+
+    private Connection connection;
 
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
         connection = ConnectionUtils.getConnection(config);
     }
 
-    public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException  {
-        res.setContentType("text/html");
+    public void doGet(HttpServletRequest req, HttpServletResponse res)
+            throws ServletException, IOException {
+
+        res.setContentType("text/html; charset=UTF-8");
         PrintWriter toClient = res.getWriter();
 
         String id = req.getParameter("id");
+        LocationData location = LocationData.getLocation(connection, id);
 
-        toClient.println("<!DOCTYPE html><body>");
-        toClient.println("<h1 align=\"center\"><a href=\"index.html\">Study Spots Donostia</a></h1>");
-        toClient.println("<table border='1' align='center'>");
+        if (location == null) {
+            toClient.println("<h2>Location not found</h2>");
+            return;
+        }
 
-        LocationData location;
-        location = LocationData.getLocation(connection, id);
-        toClient.println("<tr><td>Name</td>");
-        toClient.println("<td>"+location.locationName+"</td></tr>");
-        toClient.println("<tr><td>Rating</td>");
-        toClient.println("<td>"+location.avgRating+"</td></tr>");
-        toClient.println("<tr><td>Category</td>");
-        toClient.println("<td>"+location.category+"</td></tr>");
-        toClient.println("<tr><td>Description</td>");
-        toClient.println("<td>"+location.description+"</td></tr>");
-        toClient.println("<tr><td>Address</td>");
-        toClient.println("<td>"+location.address+"</td></tr>");
-        toClient.println("<tr><td>Hours</td>");
-        toClient.println("<td>"+location.hours+"</td></tr>");
-        toClient.println("<tr><td>Tags</td>");
-        toClient.println("<td>"+location.tags+"</td></tr>");
-        toClient.println("<tr><td>Images</td>");
-        toClient.println("<td><img src='/images/1_1.jpg' alt='img'></td>");
-        toClient.println("</tr></table>");
-        toClient.println("<a href='LocationList'>Go back to List</a>");
+        toClient.println("<!DOCTYPE html>");
+        toClient.println("<html>");
+        toClient.println("<head>");
+        toClient.println("<meta charset='UTF-8'>");
+        toClient.println("<title>Location Detail</title>");
+        toClient.println("<link rel='stylesheet' href='styles.css'>");
+        toClient.println("</head>");
+        toClient.println("<body>");
+
+        toClient.println("<div class='page-wrap'>");
+
+        // HERO
+        toClient.println("<div class='detail-hero'>");
+        toClient.println("<div class='detail-overlay'></div>");
+        toClient.println("<div class='container detail-hero-content'>");
+
+        toClient.println("<a href='LocationList' class='back-btn'>Back</a>");
+
+        toClient.println("<div class='detail-title-block'>");
+        toClient.println("<span class='badge'>" + safe(location.category) + "</span>");
+        toClient.println("<h1>" + safe(location.locationName) + "</h1>");
+        toClient.println("<div class='rating'>Rating: " + safe(location.avgRating) + "</div>");
+        toClient.println("</div>");
+
+        toClient.println("</div>");
+        toClient.println("</div>");
+
+        // CONTENT
+        toClient.println("<div class='detail-content'>");
+        toClient.println("<div class='container'>");
+
+        toClient.println("<p class='detail-lead'>" + safe(location.description) + "</p>");
+
+        toClient.println("<div class='info-grid'>");
+
+        toClient.println("<div class='info-box'>");
+        toClient.println("<div class='eyebrow'>Address</div>");
+        toClient.println("<strong>" + safe(location.address) + "</strong>");
+        toClient.println("</div>");
+
+        toClient.println("<div class='info-box'>");
+        toClient.println("<div class='eyebrow'>Hours</div>");
+        toClient.println("<strong>" + safe(location.hours) + "</strong>");
+        toClient.println("</div>");
+
+        toClient.println("</div>");
+
+        // TAGS
+        toClient.println("<div class='expect-grid'>");
+        if (location.tags != null) {
+            String[] tags = location.tags.split(",");
+            for (String tag : tags) {
+                toClient.println("<span class='expect-pill'>" + safe(tag.trim()) + "</span>");
+            }
+        }
+        toClient.println("</div>");
+
+        // IMAGE
+        String context = req.getContextPath();
+        
+        // TODO: gallery css modify
+        toClient.println("<div class='gallery'>");
+        toClient.println("<div class='gallery-card'>");
+        toClient.println("<img src='" + context + "/images/1_1.jpg' alt='image'>");
+        toClient.println("</div>");
+        toClient.println("</div>");
+
+        toClient.println("<a class='full-width-link' href='LocationList'>Back to list</a>");
+
+        toClient.println("</div>");
+        toClient.println("</div>");
+
+        toClient.println("</div>");
+
         toClient.println("</body>");
+        toClient.println("</html>");
+
         toClient.close();
     }
-}
 
+    // HTML escape (important)
+    private String safe(Object value) {
+        if (value == null) return "";
+        return value.toString()
+                .replace("&", "&amp;")
+                .replace("<", "&lt;")
+                .replace(">", "&gt;");
+    }
+}
