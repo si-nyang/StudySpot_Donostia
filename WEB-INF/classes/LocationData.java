@@ -65,6 +65,7 @@ public class LocationData {
 		this.avgRating = rating;
     }
 
+    /*
     public static Vector<LocationData> getLocationList(Connection connection, String category) {
         Vector<LocationData> vec = new Vector<LocationData>();
         String sql = "SELECT ID, Category, LocationName, Address, Description, Hours , Photos, Tags, AvgRating, Reviews, Longitude, Latitude FROM Locations";
@@ -88,6 +89,33 @@ public class LocationData {
                     Integer.parseInt(result.getString("Reviews")),
                     Float.parseFloat(result.getString("Longitude")),
                     Float.parseFloat(result.getString("Latitude"))
+                );
+                vec.addElement(location);
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error in getLocationList: " + sql + " Exception: " + e);
+        }
+        return vec;
+    }
+    */
+
+    public static Vector<LocationData> getLocationList(Connection connection, String category) {
+        Vector<LocationData> vec = new Vector<LocationData>();
+        String sql = "SELECT ID, Category, LocationName, Address, AvgRating FROM Locations";
+        sql += " WHERE Category=?";
+        System.out.println("getLocationList: " + sql);
+        try {
+            PreparedStatement pstmt=connection.prepareStatement(sql);
+            pstmt.setString(1, category);
+            ResultSet result = pstmt.executeQuery();
+            while(result.next()) {
+                LocationData location = new LocationData(
+                    Integer.parseInt(result.getString("ID")),
+                    result.getString("Category"),
+                    result.getString("LocationName"),
+                    result.getString("Address"),
+                    Double.parseDouble(result.getString("AvgRating"))
                 );
                 vec.addElement(location);
             }
