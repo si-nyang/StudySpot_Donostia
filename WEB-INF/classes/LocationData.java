@@ -55,13 +55,14 @@ public class LocationData {
         this.lat=lat;
     }
 
-    LocationData (String category, String locationName, String description, String address, String hours, String tags) {
+    LocationData (String category, String locationName, String description, String address, String hours, String tags, double rating) {
         this.category = category;
         this.locationName = locationName;
 		this.description = description;
         this.address= address;
         this.hours = hours;
         this.tags = tags;
+		this.avgRating = rating;
     }
 
     public static Vector<LocationData> getLocationList(Connection connection, String category) {
