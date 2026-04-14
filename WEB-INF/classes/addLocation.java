@@ -15,6 +15,7 @@ public class addLocation extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException  {
         res.setContentType("text/html");
+        String tags = req.getParameter("tags")
         String selectedTags = ""; 
         if (tags != null) {
             selectedTags = String.join(",", tags);
