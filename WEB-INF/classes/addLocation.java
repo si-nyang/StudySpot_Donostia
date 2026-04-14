@@ -15,8 +15,10 @@ public class addLocation extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException  {
         res.setContentType("text/html");
-        String[] tags = req.getParameterValues("tags");
-        String selectedTags = String.join(",", tags);
+        String selectedTags = ""; 
+        if (tags != null) {
+            selectedTags = String.join(",", tags);
+        }
         LocationData location  = new LocationData(
                     req.getParameter("category"),
                     req.getParameter("name"),
@@ -27,7 +29,7 @@ public class addLocation extends HttpServlet {
         );
         int n = LocationData.InsertLocation(connection, location);
 
-        res.sendRedirect("ListLocations.html" );
+        res.sendRedirect("index.html" );
         res.setContentType("text/html");
         PrintWriter toClient = res.getWriter();
         toClient.close();
