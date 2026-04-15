@@ -31,7 +31,7 @@ public class addLocation extends HttpServlet {
         );
         int n = LocationData.InsertLocation(connection, location);
 
-        res.sendRedirect("index.html" );
+        res.sendRedirect("index" );
         res.setContentType("text/html");
         PrintWriter toClient = res.getWriter();
         toClient.close();
