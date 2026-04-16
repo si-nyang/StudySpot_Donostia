@@ -40,6 +40,9 @@ public class LocationList extends HttpServlet {
         toClient.println("<input type='submit' value='Submit'>");
         toClient.println("</form>");
         toClient.println("</div>");
+        String context = req.getContextPath();
+
+
         for(int i=0; i< locationList.size(); i++){
                 LocationData location = locationList.elementAt(i);
                 toClient.println("<tr>");
@@ -47,7 +50,7 @@ public class LocationList extends HttpServlet {
                 toClient.println("<td>" + location.avgRating + " </td>");
                 toClient.println("<td>" + location.category + " </td>");
                 toClient.println("<td>" + location.address + " </td>");
-                toClient.println("<td><img src='/images/1_1.jpg' alt='img'></td>");
+                toClient.println("<td><img src='" + context + "/images/"+ location.id +"_1.jpg' alt='image'></td>");
                 toClient.println("<td><a href='LocationDetail?id=" + location.id + "'>Detail</a></td>");
                 toClient.println("</tr>");
         }
