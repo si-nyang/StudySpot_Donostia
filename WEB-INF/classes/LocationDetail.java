@@ -88,7 +88,7 @@ public class LocationDetail extends HttpServlet {
         // TODO: gallery css modify
         toClient.println("<div class='gallery'>");
         toClient.println("<div class='gallery-card'>");
-        toClient.println("<img src='" + context + "/images/1_1.jpg' alt='image'>");
+        toClient.println("<td><img src='" + context + "/images/"+ location.id +"_1.jpg' alt='image'></td>");
         toClient.println("</div>");
         toClient.println("</div>");
 

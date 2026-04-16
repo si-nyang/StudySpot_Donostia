@@ -2,8 +2,32 @@
 <html>
 
 <head>
-    <title>Add a Map with Markers</title>
+    <title>Find the location in Map</title>
+<script>
+    // When the user clicks the marker, an info window opens.
+    async function initMap() {
+        const markers = document.querySelectorAll('gmp-advanced-marker');
+        const contents = [
+            "<h2>Tecnun</h2><p>This is your university.</p>",
+            "<h2>EHU</h2><p>Another campus location.</p>"
+        ];
 
+        var currentInfo = null;
+
+        markers.forEach((marker, index) => {
+            const infoWindow = new google.maps.InfoWindow({
+                content:contents[index]
+            });
+            marker.addEventListener('gmp-click', () => {
+                if(currentInfo) currentInfo.close();
+                infoWindow.open({anchor:marker});
+                currentInfo = infoWindow;
+            });
+        });
+    }
+
+    window.initMap = initMap;
+    </script>
     <style>
         gmp-map {
             height: 100%;
@@ -19,9 +43,9 @@
 </head>
 
 <body>
-    <gmp-map center="43.304933, -2.010559" zoom="13" map-id="DEMO_MAP_ID">
-        <gmp-advanced-marker position="43.304675, -2.010136" title="Tecnun"></gmp-advanced-marker>
-        <gmp-advanced-marker position="43.306169, -2.008618" title="EHU"></gmp-advanced-marker>
+    <gmp-map center="43.311561281115, -1.983906873103425" zoom="14" map-id="DEMO_MAP_ID">
+        <gmp-advanced-marker position="43.304675, -2.010136" title="Tecnun" gmp-clickable></gmp-advanced-marker>
+        <gmp-advanced-marker position="43.306169, -2.008618" title="EHU" gmp-clickable></gmp-advanced-marker>
     </gmp-map>
 
     <script src="./config.js"></script>
@@ -29,3 +53,5 @@
 </body>
 
 </html>
+
+

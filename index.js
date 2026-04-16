@@ -1,5 +1,6 @@
 // index.js
 const script = document.createElement("script");
-script.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&libraries=maps,marker&v=weekly`;
+script.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&libraries=maps,marker&v=weekly&callback=initMap`;
+script.async = true;
 script.defer = true;
 document.head.appendChild(script);
