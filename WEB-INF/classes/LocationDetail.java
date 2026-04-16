@@ -43,12 +43,10 @@ public class LocationDetail extends HttpServlet {
         toClient.println("<div class='detail-overlay'></div>");
         toClient.println("<div class='container detail-hero-content'>");
 
-        toClient.println("<a href='LocationList' class='back-btn'>Back</a>");
-
         toClient.println("<div class='detail-title-block'>");
-        toClient.println("<span class='badge'>" + safe(location.category) + "</span>");
-        toClient.println("<h1>" + safe(location.locationName) + "</h1>");
-        toClient.println("<div class='rating'>Rating: " + safe(location.avgRating) + "</div>");
+        toClient.println("<span class='badge'>" + location.category + "</span>");
+        toClient.println("<h1>" + location.locationName + "</h1>");
+        toClient.println("<div class='rating'>Rating: " + location.avgRating + "</div>");
         toClient.println("</div>");
 
         toClient.println("</div>");
@@ -58,18 +56,18 @@ public class LocationDetail extends HttpServlet {
         toClient.println("<div class='detail-content'>");
         toClient.println("<div class='container'>");
 
-        toClient.println("<p class='detail-lead'>" + safe(location.description) + "</p>");
+        toClient.println("<p class='detail-lead'>" + location.description + "</p>");
 
         toClient.println("<div class='info-grid'>");
 
         toClient.println("<div class='info-box'>");
         toClient.println("<div class='eyebrow'>Address</div>");
-        toClient.println("<strong>" + safe(location.address) + "</strong>");
+        toClient.println("<strong>" + location.address + "</strong>");
         toClient.println("</div>");
 
         toClient.println("<div class='info-box'>");
         toClient.println("<div class='eyebrow'>Hours</div>");
-        toClient.println("<strong>" + safe(location.hours) + "</strong>");
+        toClient.println("<strong>" + location.hours + "</strong>");
         toClient.println("</div>");
 
         toClient.println("</div>");
@@ -79,7 +77,7 @@ public class LocationDetail extends HttpServlet {
         if (location.tags != null) {
             String[] tags = location.tags.split(",");
             for (String tag : tags) {
-                toClient.println("<span class='expect-pill'>" + safe(tag.trim()) + "</span>");
+                toClient.println("<span class='expect-pill'>" + tag.trim() + "</span>");
             }
         }
         toClient.println("</div>");
@@ -94,7 +92,7 @@ public class LocationDetail extends HttpServlet {
         toClient.println("</div>");
         toClient.println("</div>");
 
-        toClient.println("<a class='full-width-link' href='LocationList'>Back to list</a>");
+        toClient.println("<a class='full-width-link' href='index'>Back to Index Page</a>");
 
         toClient.println("</div>");
         toClient.println("</div>");
@@ -105,14 +103,5 @@ public class LocationDetail extends HttpServlet {
         toClient.println("</html>");
 
         toClient.close();
-    }
-
-    // HTML escape (important)
-    private String safe(Object value) {
-        if (value == null) return "";
-        return value.toString()
-                .replace("&", "&amp;")
-                .replace("<", "&lt;")
-                .replace(">", "&gt;");
     }
 }

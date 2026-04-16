@@ -485,3 +485,13 @@ footer {
   .gallery { grid-template-columns: 1fr; }
   .full-width-link { font-size: 1.25rem; }
 }
+
+/* Open Page btn in index page */
+.cta-btn {
+  background-color: #1a2a40;
+  color: white;
+  padding: 10px;
+  display: inline-block;
+  border-radius: 4px;
+  text-decoration: none;
+}
