@@ -17,9 +17,9 @@ public class LocationList extends HttpServlet {
         res.setContentType("text/html");
         PrintWriter toClient = res.getWriter();
         String category = req.getParameter("category");
-        toClient.println("<h1 align=\"center\"><a href=\"index\">Study Spots Donostia</a></h1>");
-        toClient.println("<table border='1' align='center'>");
-        toClient.println("<tr><td>Name</td><td>Rating</td><td>Category</td><td>Location</td><td>Photo</td><td>More Info</td></tr>");
+        toClient.println("<head><link rel='stylesheet' href='styles.css'/></head>");
+        toClient.println("<body><h1 id='locationListHeader' align=\"center\"><a href=\"index\">Study Spots Donostia</a></h1>");
+       
         Vector<LocationData> locationList;
         if (category != null && !category.isEmpty()) {
             locationList = LocationData.getLocationList(connection, category);
@@ -29,7 +29,7 @@ public class LocationList extends HttpServlet {
         }
 
         System.out.println(locationList.size());
-        toClient.println("<div id='categoryFilter' align='center'>");
+        toClient.println("<div id='categoryFilter' align='right'>");
         toClient.println("<form action='/StudySpot_Donostia/LocationList'>");
         toClient.println("<select id='category' name='category' size='4' multiple>");
         toClient.println("<option value='University'>University</option>");
@@ -37,9 +37,11 @@ public class LocationList extends HttpServlet {
         toClient.println("<option value='Library'>Library</option>");
         toClient.println("<option value=''>All</option>");
         toClient.println("</select>");
-        toClient.println("<input type='submit' value='Submit'>");
+        toClient.println("<br><input type='submit' value='Apply'>");
         toClient.println("</form>");
         toClient.println("</div>");
+        toClient.println("<table border='1' align='center'>");
+        toClient.println("<tr><td>Name</td><td>Rating</td><td>Category</td><td>Location</td><td>Photo</td><td>More Info</td></tr>");
         String context = req.getContextPath();
 
 
@@ -56,6 +58,7 @@ public class LocationList extends HttpServlet {
         }
 
         toClient.println("</table>");
+        toClient.println("</body>");
         toClient.close();
     }
 }
