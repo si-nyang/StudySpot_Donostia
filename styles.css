@@ -495,3 +495,41 @@ footer {
   border-radius: 4px;
   text-decoration: none;
 }
+
+#locationListHeader {
+  background-color: #141839;
+  color: #fffdfa;
+  padding: 30px
+}
+
+table {
+  width: 95%;
+  margin: 30px;
+  border-spacing: 16px 16px;
+  border:none;
+}
+
+tr {
+  background: #fffdfa;
+}
+
+td {
+  border:none;
+  vertical-align: middle;
+  background-color: #fffdfa;
+  border-radius: 16px;
+  text-align: center;
+}
+
+td img {
+  width: 90px;
+  height:90px;
+}
+
+td a {
+  color: navy
+}
+
+#categoryFilter {
+  padding-right: 50px;
+}
