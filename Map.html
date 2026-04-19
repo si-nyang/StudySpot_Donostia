@@ -3,31 +3,7 @@
 
 <head>
     <title>Find the location in Map</title>
-<script>
-    // When the user clicks the marker, an info window opens.
-    async function initMap() {
-        const markers = document.querySelectorAll('gmp-advanced-marker');
-        const contents = [
-            "<h2>Tecnun</h2><p>This is your university.</p>",
-            "<h2>EHU</h2><p>Another campus location.</p>"
-        ];
-
-        var currentInfo = null;
-
-        markers.forEach((marker, index) => {
-            const infoWindow = new google.maps.InfoWindow({
-                content:contents[index]
-            });
-            marker.addEventListener('gmp-click', () => {
-                if(currentInfo) currentInfo.close();
-                infoWindow.open({anchor:marker});
-                currentInfo = infoWindow;
-            });
-        });
-    }
-
-    window.initMap = initMap;
-    </script>
+    <link rel="stylesheet" href="styles.css" />
     <style>
         gmp-map {
             height: 100%;
@@ -43,15 +19,49 @@
 </head>
 
 <body>
-    <gmp-map center="43.311561281115, -1.983906873103425" zoom="14" map-id="DEMO_MAP_ID">
-        <gmp-advanced-marker position="43.304675, -2.010136" title="Tecnun" gmp-clickable></gmp-advanced-marker>
-        <gmp-advanced-marker position="43.306169, -2.008618" title="EHU" gmp-clickable></gmp-advanced-marker>
-    </gmp-map>
+    <header class="topbar">
+        <div class="container topbar-inner">
+            <div class="brand">
+                <h1 align="center"><a href="index">Study Spots Donostia</a></h1>
+            </div>
+        </div>
+    </header>
+    <gmp-map id="map" center="43.311561281115, -1.983906873103425" zoom="14" map-id="DEMO_MAP_ID"></gmp-map>
+
+    <script>
+        // When the user clicks the marker, an info window opens.
+        async function initMap() {
+            const map = document.getElementById('map');
+            const response = await fetch('mapJson');
+            const Locations = await response.json();
+
+            var currentInfo = null;
+
+            Locations.forEach((location) => {
+                const marker = document.createElement('gmp-advanced-marker');
+                // <gmp-advanced-marker position="43.306169, -2.008618" title="EHU" gmp-clickable></gmp-advanced-marker>
+                marker.setAttribute('position', location.longitude + ',' + location.latitude);
+                marker.setAttribute('title', location.name);
+                marker.setAttribute('gmp-clickable', '');
+                map.appendChild(marker);
+
+                const infoWindow = new google.maps.InfoWindow({
+                    content: '<h2>' + location.name + '</h2><p>' + location.description + '</p>'
+                });
+
+                marker.addEventListener('gmp-click', () => {
+                    if (currentInfo) currentInfo.close();
+                    infoWindow.open({ anchor: marker });
+                    currentInfo = infoWindow;
+                });
+            });
+        }
+
+        window.initMap = initMap;
+    </script>
 
     <script src="./config.js"></script>
     <script src="./index.js"></script>
 </body>
 
 </html>
-
-

@@ -65,6 +65,13 @@ public class LocationData {
 		this.avgRating = rating;
     }
 
+    LocationData (String locationName, String description, float lon, float lat) {
+        this.locationName = locationName;
+        this.description = description;
+		this.lon = lon;
+        this.lat= lat;
+    }
+
     /*
     public static Vector<LocationData> getLocationList(Connection connection, String category) {
         Vector<LocationData> vec = new Vector<LocationData>();
@@ -161,6 +168,40 @@ public class LocationData {
         return vec;
     }
    
+    public static Vector<LocationData> getLocationListForMap(Connection connection) {
+        Vector<LocationData> vec = new Vector<LocationData>();
+
+        String sql = "SELECT LocationName, Description, Longitude, Latitude FROM Locations";
+        System.out.println("getLocationListForMap: " + sql);
+
+        try {
+            System.out.println("before prepareStatement");
+            PreparedStatement pstmt = connection.prepareStatement(sql);
+
+            System.out.println("before executeQuery");
+            ResultSet result = pstmt.executeQuery();
+    
+            System.out.println("after executeQuery");
+    
+            while(result.next()) {
+                System.out.println("reading one row");
+    
+                LocationData location = new LocationData(
+                    result.getString("LocationName"),
+                    result.getString("Description"),
+                    Float.parseFloat(result.getString("Longitude")),
+                    Float.parseFloat(result.getString("Latitude"))                    
+                );
+                vec.addElement(location);
+            }
+            System.out.println("after while, rows=" + vec.size());
+
+        } catch(Exception e) {
+            e.printStackTrace();
+            System.out.println("Error in getLocationListForMap: " + sql + " Exception: " + e);
+        }
+        return vec;
+    }
 
     public static LocationData getLocation(Connection connection, String id) {
         String sql = "SELECT ID, Category, LocationName, Address, Description, Hours , Photos, Tags, AvgRating FROM Locations";

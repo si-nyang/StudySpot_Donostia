@@ -44,4 +44,15 @@
     <welcome-file-list>
         <welcome-file>index</welcome-file>
     </welcome-file-list>
+
+    <servlet>
+        <servlet-name>mapJson</servlet-name>
+        <servlet-class>mapJson</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>mapJson</servlet-name>
+        <url-pattern>/mapJson</url-pattern>
+    </servlet-mapping>
+
 </web-app>
