@@ -98,7 +98,7 @@ public class LocationDetail extends HttpServlet {
         toClient.println("</div>");
         toClient.println("</div>");
 
-        toClient.println("<a class='full-width-link' href='UpdateLocation?id="+location.id+"'>Want to Update information</a>");
+        toClient.println("<a class='full-width-link' href='UpdateLocation?id="+location.id+"'>Update information</a>");
 
         toClient.println("</div>");
         toClient.println("</div>");

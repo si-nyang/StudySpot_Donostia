@@ -45,7 +45,7 @@ const infos = [
     description: "This function allows the user to edit the information of an existing study spot.",
     explanation: "The Edit Location page loads the current data of a selected study spot into a form. After the user updates the fields and submits the form, the servlet reads the modified values, creates or updates a LocationData object, updates the corresponding record in the database, and then redirects the user to another page such as the detail page or list page.",
     testData: "Use an existing location record and change fields such as category, name, description, address, hours, tags, or rating.",
-    link: "EditLocation.html"
+    link: "UpdateLocation?id=1"
   }
 ];
 
