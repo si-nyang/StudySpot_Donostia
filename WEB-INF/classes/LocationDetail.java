@@ -39,7 +39,7 @@ public class LocationDetail extends HttpServlet {
         toClient.println("<header class='topbar'>");
         toClient.println("<div class='container topbar-inner'>");
         toClient.println("<div class='brand'>");
-        toClient.println("<h1 align='center'><a href='index'>Study Spots Donostia</a></h1>");
+        toClient.println("<h1 align='center'><a href='menu'>Study Spots Donostia</a></h1>");
         toClient.println("</div></div></header>");
 
         toClient.println("<div class='page-wrap'>");
