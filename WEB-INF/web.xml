@@ -51,4 +51,17 @@
         <url-pattern>/mapJson</url-pattern>
     </servlet-mapping>
 
+    
+<servlet>
+        <servlet-name>UpdateLocation</servlet-name>
+        <servlet-class>UpdateLocation</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateLocation</servlet-name>
+        <url-pattern>/UpdateLocation</url-pattern>
+    </servlet-mapping>
+
+    <welcome-file-list>
+        <welcome-file>index</welcome-file>
+    </welcome-file-list>
 </web-app>
