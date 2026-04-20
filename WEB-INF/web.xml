@@ -32,18 +32,14 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>index</servlet-name>
-        <servlet-class>index</servlet-class>
+        <servlet-name>menu</servlet-name>
+        <servlet-class>menu</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>index</servlet-name>
-        <url-pattern>/index</url-pattern>
+        <servlet-name>menu</servlet-name>
+        <url-pattern>/menu</url-pattern>
     </servlet-mapping>
-
-    <welcome-file-list>
-        <welcome-file>index</welcome-file>
-    </welcome-file-list>
 
     <servlet>
         <servlet-name>mapJson</servlet-name>
