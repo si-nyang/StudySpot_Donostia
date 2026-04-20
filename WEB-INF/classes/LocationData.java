@@ -255,4 +255,32 @@ public class LocationData {
         }
         return n;
     }
+public static int updateLocation(Connection connection, LocationData location) {
+    int result = 0;
+    // Hier habe ich die Spaltennamen an dein SELECT-Statement angepasst (LocationName, AvgRating)
+    String sql = "UPDATE Locations SET Category=?, LocationName=?, Description=?, Address=?, Hours=?, Tags=?, AvgRating=? WHERE ID=?";
+    
+    System.out.println("Executing updateLocation for ID: " + location.id);
+    
+    try {
+        PreparedStatement pstmt = connection.prepareStatement(sql);
+        pstmt.setString(1, location.category);
+        pstmt.setString(2, location.locationName);
+        pstmt.setString(3, location.description);
+        pstmt.setString(4, location.address);
+        pstmt.setString(5, location.hours);
+        pstmt.setString(6, location.tags);
+        pstmt.setDouble(7, location.avgRating);
+        pstmt.setInt(8, location.id);
+        
+        result = pstmt.executeUpdate();
+        pstmt.close();
+        
+        System.out.println("Rows affected: " + result);
+    } catch (SQLException e) {
+        e.printStackTrace();
+        System.out.println("Error in updateLocation: " + sql + " Exception: " + e);
+    }
+    return result;
+}
 }
