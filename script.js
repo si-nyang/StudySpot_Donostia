@@ -1,7 +1,7 @@
 const infos = [
   {
     title: "1. Home Page",
-    author: "Your name",
+    author: "Kristyna Hrncirova",
     description: "This function displays the main page of the Study Spots website and gives access to the main features.",
     explanation: "The page is handled by the index servlet. When the user opens the website, the servlet generates the home page and shows navigation cards that link to other pages such as the list page, map page, and add location page.",
     testData: "Open the page and check whether the navigation cards are displayed correctly and link to the expected pages.",
