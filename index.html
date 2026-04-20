@@ -221,31 +221,43 @@
         <tbody>
             <tr>
                 <td style="width: 806px;" colspan="3">
-                    <center>NAME and SURNAME</center>
+                    <center>Yasin Abdel Halim</center>
                 </td>
             </tr>
             <tr>
-                <td style="width: 806px;" colspan="3"><a href="function1.html">Edit Location Page</td>
+                <td style="width: 806px;" colspan="3"><a href="UpdateLocation?id=1">Edit Location Page</a></td>
             </tr>
             <tr>
                 <td style="width: 87px;"></td>
-                <td style="width: 719px;" colspan="2">Description: This function ...<br>Then ...</td>
+                <td style="width: 719px;" colspan="2">
+                    Description: This function allows users to modify existing study spot information. 
+                    It retrieves current data from the database, displays it in a form, and updates the record upon submission.<br>
+                    The page ensures that any changes to a spot's details are saved and reflected across the system.
+                </td>
             </tr>
             <tr>
                 <td style="width: 87px;"></td>
-                <td style="width: 719px;" colspan="2">Use:<br>First, the user ...<br>...</td>
+                <td style="width: 719px;" colspan="2">
+                    Use:<br>
+                    First, the user navigates to the edit page (usually from a detail view).<br>
+                    Then, they change the desired information in the input fields and click "Speichern".<br>
+                    The system updates the database and redirects the user back to the updated location details.
+                </td>
             </tr>
             <tr>
                 <td style="width: 87px;"></td>
-                <td style="width: 220px;">File1.html</td>
-                <td style="width: 499px;">This file ...</td>
+                <td style="width: 220px;">UpdateLocation.java</td>
+                <td style="width: 499px;">
+                    This servlet handles both displaying the edit form (GET) and processing the database update (POST).
+                </td>
             </tr>
             <tr>
                 <td style="width: 87px;"></td>
-                <td style="width: 220px;">File2.java</td>
-                <td style="width: 499px;">This file ...</td>
+                <td style="width: 220px;">LocationData.java (updateLocation)</td>
+                <td style="width: 499px;">
+                    This method executes the SQL UPDATE statement to save the modified location data into the database.
+                </td>
             </tr>
-
         </tbody>
     </table>
     <p></p>
