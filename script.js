@@ -16,7 +16,15 @@ const infos = [
     link: "LocationList"
   },
   {
-    title: "3. Map Page",
+    title: "3. Detail Page",
+    author: "Shinyang Park",
+    description: "This function displays detailed information about one selected study spot.",
+    explanation: "The LocationDetail servlet reads the location id from the URL and uses it to load one record from the database through the LocationData class. If the location exists, the servlet generates a detail page showing the category, name, rating, description, address, hours, tags, and image of the selected study spot. If no matching record is found, it displays a 'Location not found' message.",
+    testData: "Use an existing location id that has complete data such as category, name, description, address, hours, tags, rating, and an image file.",
+    link: "LocationDetail?id=1"
+  },
+  {
+    title: "4. Map Page",
     author: "Shinyang Park",
     description: "This function displays study spots on an interactive map so users can view their locations visually.",
     explanation: "The map page loads a Google Map and requests location data from the mapJson servlet using fetch. The servlet reads the study spot name, description, longitude, and latitude from the Locations table through the LocationData class and returns them as JSON. Then JavaScript creates a marker for each location and shows an information window when the user clicks a marker.",
@@ -24,20 +32,12 @@ const infos = [
     link: "Map.html"
   },
   {
-    title: "4. Add Location",
+    title: "5. Add Location",
     author: "Your name",
     description: "This function allows the user to add a new study spot by filling in a form.",
     explanation: "The Add Location page contains a form where the user enters information such as category, name, description, address, hours, tags, and rating. When the form is submitted, the addLocation servlet reads the input values, combines the selected tags into one string, creates a LocationData object, inserts it into the Locations table, and then redirects the user to the home page.",
     testData: "Enter a category, location name, description, address, opening hours, one or more tags, and a numeric rating value.",
     link: "AddLocation.html"
-  },
-  {
-    title: "5. Detail Page",
-    author: "Shinyang Park",
-    description: "This function displays detailed information about one selected study spot.",
-    explanation: "The LocationDetail servlet reads the location id from the URL and uses it to load one record from the database through the LocationData class. If the location exists, the servlet generates a detail page showing the category, name, rating, description, address, hours, tags, and image of the selected study spot. If no matching record is found, it displays a 'Location not found' message.",
-    testData: "Use an existing location id that has complete data such as category, name, description, address, hours, tags, rating, and an image file.",
-    link: "LocationDetail?id=1"
   },
   {
     title: "6. Edit Location",

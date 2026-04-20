@@ -18,7 +18,7 @@ public class LocationList extends HttpServlet {
         PrintWriter toClient = res.getWriter();
         String category = req.getParameter("category");
         toClient.println("<head><link rel='stylesheet' href='styles.css'/></head>");
-        toClient.println("<body><h1 id='locationListHeader' align=\"center\"><a href=\"index\">Study Spots Donostia</a></h1>");
+        toClient.println("<body><h1 id='locationListHeader' align=\"center\"><a href=\"menu\">Study Spots Donostia</a></h1>");
        
         Vector<LocationData> locationList;
         if (category != null && !category.isEmpty()) {
