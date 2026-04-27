@@ -26,7 +26,7 @@ public class CheckLogin extends HttpServlet {
         if (logged != null) {
             HttpSession session = req.getSession(true);
             session.setAttribute("login", logged);
-            res.sendRedirect("ProductList");
+            res.sendRedirect("menu");
         } else {
             PrintWriter toClient = res.getWriter();
             toClient.println(Utils.header("Login"));
