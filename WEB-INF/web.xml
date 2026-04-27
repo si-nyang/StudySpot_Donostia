@@ -52,12 +52,22 @@
     </servlet-mapping>
 
     
-<servlet>
+    <servlet>
         <servlet-name>UpdateLocation</servlet-name>
         <servlet-class>UpdateLocation</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>UpdateLocation</servlet-name>
         <url-pattern>/UpdateLocation</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>CheckLogin</servlet-name>
+        <servlet-class>CheckLogin</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CheckLogin</servlet-name>
+        <url-pattern>/CheckLogin</url-pattern>
     </servlet-mapping>
 </web-app>
