@@ -46,7 +46,7 @@ public class UpdateLocation extends HttpServlet {
         
         // Hidden field for ID
         toClient.println("<input type='hidden' name='id' value='" + location.id + "'>");
-
+        
         // Category
         toClient.println("<div class='form-group'>");
         toClient.println("<label for='category'>Category</label>");

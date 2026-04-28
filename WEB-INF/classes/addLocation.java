@@ -28,6 +28,7 @@ public class addLocation extends HttpServlet {
                     req.getParameter("hours"),
                     selectedTags,
                     Double.parseDouble(req.getParameter("ratings")),
+                    req.getParameter("Creator"),
                     Float.parseFloat(req.getParameter("lon")) 
                     Float.parseFloat(req.getParameter("lat"))
                    
