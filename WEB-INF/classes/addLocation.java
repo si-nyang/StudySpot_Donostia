@@ -16,10 +16,22 @@ public class addLocation extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException  {
         res.setContentType("text/html");
         String[] tags = req.getParameterValues("tags");
-        String selectedTags = ""; 
+        String selectedTags = "";
         if (tags != null) {
             selectedTags = String.join(",", tags);
         }
+        String lonParam = req.getParameter("lon");
+        String latParam = req.getParameter("lat");
+        Float lon = 0.0f;
+        Float lat = 0.0f;
+        if (lonParam != null && !lonParam.isEmpty()) {
+            lon = Float.parseFloat(lonParam);
+        }
+        if (latParam != null && !latParam.isEmpty()) {
+            lat = Float.parseFloat(latParam);
+        }
+        int photos = 0;
+
         LocationData location  = new LocationData(
                     req.getParameter("category"),
                     req.getParameter("name"),
@@ -29,8 +41,9 @@ public class addLocation extends HttpServlet {
                     selectedTags,
                     Double.parseDouble(req.getParameter("ratings")),
                     req.getParameter("Creator"),
-                    Float.parseFloat(req.getParameter("lon")),
-                    Float.parseFloat(req.getParameter("lat"))
+                    lon,
+                    lat,
+                    photos
                    
         );
         int n = LocationData.InsertLocation(connection, location);
