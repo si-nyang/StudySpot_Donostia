@@ -53,6 +53,8 @@ public class LocationDetail extends HttpServlet {
         toClient.println("<span class='badge'>" + location.category + "</span>");
         toClient.println("<h1>" + location.locationName + "</h1>");
         toClient.println("<div class='rating'>Rating: " + location.avgRating + "</div>");
+        toClient.println("<div class='rating'>Creator: " + location.creator + "</div>");
+
         toClient.println("</div>");
 
         toClient.println("</div>");
@@ -63,6 +65,7 @@ public class LocationDetail extends HttpServlet {
         toClient.println("<div class='container'>");
 
         toClient.println("<p class='detail-lead'>" + location.description + "</p>");
+
 
         toClient.println("<div class='info-grid'>");
 

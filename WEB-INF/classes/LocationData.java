@@ -29,7 +29,7 @@ public class LocationData {
     }
 
     LocationData (int id, String locationName, double avgRating, String category, String description, String address,
-                    String hours, String tags, int photos) {
+                    String hours, String tags, int photos, String creator) {
         this.id = id;
         this.locationName = locationName;
         this.avgRating=avgRating;
@@ -39,6 +39,7 @@ public class LocationData {
         this.hours = hours;
         this.tags = tags;
         this.photos = photos;
+        this.creator = creator;
     }
     
     LocationData (int id, String category, String locationName, String address, String description, String hours, int photos, String tags, double avgRating, int reviews, float lon, float lat) {
@@ -216,7 +217,7 @@ public class LocationData {
     }
 
     public static LocationData getLocation(Connection connection, String id) {
-        String sql = "SELECT ID, Category, LocationName, Address, Description, Hours , Photos, Tags, AvgRating FROM Locations";
+        String sql = "SELECT ID, Category, LocationName, Address, Description, Hours , Photos, Tags, AvgRating, Creator FROM Locations";
         sql += " WHERE ID=?";
 
         LocationData location = null;;
@@ -235,7 +236,8 @@ public class LocationData {
                     result.getString("Address"),
                     result.getString("Hours"),
                     result.getString("Tags"),
-                    Integer.parseInt(result.getString("Photos"))
+                    Integer.parseInt(result.getString("Photos")),
+                    result.getString("Creator")
                 );
             }
         } catch(SQLException e) {
