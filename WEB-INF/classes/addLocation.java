@@ -29,7 +29,7 @@ public class addLocation extends HttpServlet {
                     selectedTags,
                     Double.parseDouble(req.getParameter("ratings")),
                     req.getParameter("Creator"),
-                    Float.parseFloat(req.getParameter("lon")) 
+                    Float.parseFloat(req.getParameter("lon")),
                     Float.parseFloat(req.getParameter("lat"))
                    
         );

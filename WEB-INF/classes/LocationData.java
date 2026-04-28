@@ -66,8 +66,8 @@ public class LocationData {
         this.tags = tags;
 		this.avgRating = rating;
         this.creator = creator;
-        this.lon;
-        this.rat;
+        this.lon = lon;
+        this.lat = lat;
     }
 
     LocationData (String category, String locationName, String description, String address, String hours, String tags, double rating) {
@@ -78,8 +78,6 @@ public class LocationData {
         this.hours = hours;
         this.tags = tags;
 		this.avgRating = rating;
-        this.lon = lon;
-        this.lat = lat;
     }
 
     LocationData (String locationName, String description, float lon, float lat) {
