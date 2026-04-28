@@ -37,7 +37,7 @@ const infos = [
     description: "This function allows the user to add a new study spot by filling in a form.",
     explanation: "The Add Location page contains a form where the user enters information such as category, name, description, address, hours, tags, and rating. When the form is submitted, the addLocation servlet reads the input values, combines the selected tags into one string, creates a LocationData object, inserts it into the Locations table, and then redirects the user to the home page.",
     testData: "Enter a category, location name, description, address, opening hours, one or more tags, and a numeric rating value.",
-    link: "AddLocation.html"
+    link: "Session"
   },
   {
     title: "6. Edit Location",

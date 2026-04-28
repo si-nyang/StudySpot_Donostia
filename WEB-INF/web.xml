@@ -63,11 +63,11 @@
 
 
     <servlet>
-        <servlet-name>CheckLogin</servlet-name>
-        <servlet-class>CheckLogin</servlet-class>
+        <servlet-name>Session</servlet-name>
+        <servlet-class>Session</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>CheckLogin</servlet-name>
-        <url-pattern>/CheckLogin</url-pattern>
+        <servlet-name>Session</servlet-name>
+        <url-pattern>/Session</url-pattern>
     </servlet-mapping>
 </web-app>
