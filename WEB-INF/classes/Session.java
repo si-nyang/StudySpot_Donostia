@@ -87,6 +87,18 @@ public class Session extends HttpServlet {
     out.println("<input type='text' name='ratings' style='width:100%;padding:12px;'>");
     out.println("</div>");
 
+    // longitude
+    out.println("<div style='margin-bottom:20px;'>");
+    out.println("<label class='eyebrow'>Longitude</label>");
+    out.println("<input type='text' name='lon' style='width:100%;padding:12px;'>");
+    out.println("</div>");
+
+    // latitude
+    out.println("<div style='margin-bottom:20px;'>");
+    out.println("<label class='eyebrow'>Latitude</label>");
+    out.println("<input type='text' name='lat' style='width:100%;padding:12px;'>");
+    out.println("</div>");
+
     // Submit
     out.println("<div style='margin-top:30px;'>");
     out.println("<input type='submit' value='Submit' style='width:100%;'>");
