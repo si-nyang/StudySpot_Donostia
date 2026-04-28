@@ -18,6 +18,7 @@ public class LocationData {
     int reviews;
     float lon;
     float lat;
+    String creator;
 
     LocationData (int id, String category, String locationName, String address, double avgRating) {
         this.id = id;
