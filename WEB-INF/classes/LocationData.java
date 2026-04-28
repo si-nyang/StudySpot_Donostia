@@ -57,7 +57,7 @@ public class LocationData {
         this.lat=lat;
     }
 
-    LocationData (String category, String locationName, String description, String address, String hours, String tags, double rating, String creator, float lon, float lat) {
+    LocationData (String category, String locationName, String description, String address, String hours, String tags, double rating, String creator, float lon, float lat, int photos) {
         this.category = category;
         this.locationName = locationName;
 		this.description = description;
@@ -68,6 +68,7 @@ public class LocationData {
         this.creator = creator;
         this.lon = lon;
         this.lat = lat;
+        this.photos = photos;
     }
 
     LocationData (String category, String locationName, String description, String address, String hours, String tags, double rating) {
@@ -250,8 +251,8 @@ public class LocationData {
     }
     
     public static int InsertLocation(Connection connection, LocationData location) {
-        String sql ="INSERT INTO Locations (Category, LocationName, Description, Address, Hours, Tags, AvgRating, Creator, Longitude, Latitude) "
-            + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql ="INSERT INTO Locations (Category, LocationName, Description, Address, Hours, Tags, AvgRating, Creator, Longitude, Latitude, Photos) "
+            + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         System.out.println("updateLocation: " + sql);
         int n = 0;
         try {
@@ -265,7 +266,8 @@ public class LocationData {
             stmtUpdate.setDouble(7,location.avgRating);		
             stmtUpdate.setString(8,location.creator);
             stmtUpdate.setDouble(9,location.lon);		
-            stmtUpdate.setDouble(10,location.lat);		
+            stmtUpdate.setDouble(10,location.lat);
+            stmtUpdate.setInt(11, location.photos);
             n = stmtUpdate.executeUpdate();
             stmtUpdate.close();
         } catch(SQLException e) {
