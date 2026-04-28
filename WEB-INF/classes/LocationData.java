@@ -78,6 +78,8 @@ public class LocationData {
         this.hours = hours;
         this.tags = tags;
 		this.avgRating = rating;
+        this.lon = lon;
+        this.lat = lat;
     }
 
     LocationData (String locationName, String description, float lon, float lat) {
@@ -266,8 +268,6 @@ public class LocationData {
             stmtUpdate.setString(8,location.creator);
             stmtUpdate.setDouble(9,location.lon);		
             stmtUpdate.setDouble(10,location.lat);		
-
-	
             n = stmtUpdate.executeUpdate();
             stmtUpdate.close();
         } catch(SQLException e) {
@@ -276,7 +276,7 @@ public class LocationData {
         }
         return n;
     }
-    
+
 public static int updateLocation(Connection connection, LocationData location) {
     int result = 0;
     // Hier habe ich die Spaltennamen an dein SELECT-Statement angepasst (LocationName, AvgRating)
