@@ -57,7 +57,7 @@ public class LocationData {
         this.lat=lat;
     }
 
-    LocationData (String category, String locationName, String description, String address, String hours, String tags, double rating, String creator) {
+    LocationData (String category, String locationName, String description, String address, String hours, String tags, double rating, String creator, float lon, float lat) {
         this.category = category;
         this.locationName = locationName;
 		this.description = description;
@@ -66,6 +66,8 @@ public class LocationData {
         this.tags = tags;
 		this.avgRating = rating;
         this.creator = creator;
+        this.lon;
+        this.rat;
     }
 
     LocationData (String category, String locationName, String description, String address, String hours, String tags, double rating) {
@@ -248,8 +250,8 @@ public class LocationData {
     }
     
     public static int InsertLocation(Connection connection, LocationData location) {
-        String sql ="INSERT INTO Locations (Category, LocationName, Description, Address, Hours, Tags, AvgRating, Creator) "
-            + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql ="INSERT INTO Locations (Category, LocationName, Description, Address, Hours, Tags, AvgRating, Creator, Longitude, Latitude) "
+            + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         System.out.println("updateLocation: " + sql);
         int n = 0;
         try {
@@ -262,6 +264,9 @@ public class LocationData {
             stmtUpdate.setString(6,location.tags);
             stmtUpdate.setDouble(7,location.avgRating);		
             stmtUpdate.setString(8,location.creator);
+            stmtUpdate.setDouble(9,location.lon);		
+            stmtUpdate.setDouble(10,location.lat);		
+
 	
             n = stmtUpdate.executeUpdate();
             stmtUpdate.close();
@@ -271,6 +276,7 @@ public class LocationData {
         }
         return n;
     }
+    
 public static int updateLocation(Connection connection, LocationData location) {
     int result = 0;
     // Hier habe ich die Spaltennamen an dein SELECT-Statement angepasst (LocationName, AvgRating)
