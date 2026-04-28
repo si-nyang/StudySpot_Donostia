@@ -56,6 +56,17 @@ public class LocationData {
         this.lat=lat;
     }
 
+    LocationData (String category, String locationName, String description, String address, String hours, String tags, double rating, String creator) {
+        this.category = category;
+        this.locationName = locationName;
+		this.description = description;
+        this.address= address;
+        this.hours = hours;
+        this.tags = tags;
+		this.avgRating = rating;
+        this.creator = creator;
+    }
+
     LocationData (String category, String locationName, String description, String address, String hours, String tags, double rating) {
         this.category = category;
         this.locationName = locationName;
@@ -235,8 +246,8 @@ public class LocationData {
     }
     
     public static int InsertLocation(Connection connection, LocationData location) {
-        String sql ="INSERT INTO Locations (Category, LocationName, Description, Address, Hours, Tags, AvgRating) "
-            + "VALUES (?, ?, ?, ?, ?,?,?)";
+        String sql ="INSERT INTO Locations (Category, LocationName, Description, Address, Hours, Tags, AvgRating, Creator) "
+            + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         System.out.println("updateLocation: " + sql);
         int n = 0;
         try {
@@ -247,7 +258,9 @@ public class LocationData {
             stmtUpdate.setString(4,location.address);
             stmtUpdate.setString(5,location.hours);
             stmtUpdate.setString(6,location.tags);
-            stmtUpdate.setDouble(7,location.avgRating);			
+            stmtUpdate.setDouble(7,location.avgRating);		
+            stmtUpdate.setString(8,location.creator);
+	
             n = stmtUpdate.executeUpdate();
             stmtUpdate.close();
         } catch(SQLException e) {
