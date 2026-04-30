@@ -20,7 +20,7 @@ const infos = [
     author: "Shinyang Park",
     description: "This function displays detailed information about one selected study spot.",
     explanation: "The LocationDetail servlet reads the location id from the URL and uses it to load one record from the database through the LocationData class. If the location exists, the servlet generates a detail page showing the category, name, rating, description, address, hours, tags, and image of the selected study spot. If no matching record is found, it displays a 'Location not found' message.",
-    testData: "Use an existing location id that has complete data such as category, name, description, address, hours, tags, rating, and an image file.",
+    testData: "Use an existing location id that has complete data such as category, name, creator, description, address, hours, tags, rating, and an image file.",
     link: "LocationDetail?id=1"
   },
   {
