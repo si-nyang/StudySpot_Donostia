@@ -18,6 +18,7 @@ public class LocationData {
     int reviews;
     float lon;
     float lat;
+    String creator;
 
     LocationData (int id, String category, String locationName, String address, double avgRating) {
         this.id = id;
@@ -28,7 +29,7 @@ public class LocationData {
     }
 
     LocationData (int id, String locationName, double avgRating, String category, String description, String address,
-                    String hours, String tags, int photos) {
+                    String hours, String tags, int photos, String creator) {
         this.id = id;
         this.locationName = locationName;
         this.avgRating=avgRating;
@@ -38,6 +39,7 @@ public class LocationData {
         this.hours = hours;
         this.tags = tags;
         this.photos = photos;
+        this.creator = creator;
     }
     
     LocationData (int id, String category, String locationName, String address, String description, String hours, int photos, String tags, double avgRating, int reviews, float lon, float lat) {
@@ -53,6 +55,20 @@ public class LocationData {
         this.reviews=reviews;
         this.lon=lon;
         this.lat=lat;
+    }
+
+    LocationData (String category, String locationName, String description, String address, String hours, String tags, double rating, String creator, float lon, float lat, int photos) {
+        this.category = category;
+        this.locationName = locationName;
+		this.description = description;
+        this.address= address;
+        this.hours = hours;
+        this.tags = tags;
+		this.avgRating = rating;
+        this.creator = creator;
+        this.lon = lon;
+        this.lat = lat;
+        this.photos = photos;
     }
 
     LocationData (String category, String locationName, String description, String address, String hours, String tags, double rating) {
@@ -204,7 +220,7 @@ public class LocationData {
     }
 
     public static LocationData getLocation(Connection connection, String id) {
-        String sql = "SELECT ID, Category, LocationName, Address, Description, Hours , Photos, Tags, AvgRating FROM Locations";
+        String sql = "SELECT ID, Category, LocationName, Address, Description, Hours , Photos, Tags, AvgRating, Creator FROM Locations";
         sql += " WHERE ID=?";
 
         LocationData location = null;;
@@ -223,7 +239,8 @@ public class LocationData {
                     result.getString("Address"),
                     result.getString("Hours"),
                     result.getString("Tags"),
-                    Integer.parseInt(result.getString("Photos"))
+                    Integer.parseInt(result.getString("Photos")),
+                    result.getString("Creator")
                 );
             }
         } catch(SQLException e) {
@@ -234,8 +251,8 @@ public class LocationData {
     }
     
     public static int InsertLocation(Connection connection, LocationData location) {
-        String sql ="INSERT INTO Locations (Category, LocationName, Description, Address, Hours, Tags, AvgRating) "
-            + "VALUES (?, ?, ?, ?, ?,?,?)";
+        String sql ="INSERT INTO Locations (Category, LocationName, Description, Address, Hours, Tags, AvgRating, Creator, Longitude, Latitude, Photos) "
+            + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         System.out.println("updateLocation: " + sql);
         int n = 0;
         try {
@@ -246,7 +263,11 @@ public class LocationData {
             stmtUpdate.setString(4,location.address);
             stmtUpdate.setString(5,location.hours);
             stmtUpdate.setString(6,location.tags);
-            stmtUpdate.setDouble(7,location.avgRating);			
+            stmtUpdate.setDouble(7,location.avgRating);		
+            stmtUpdate.setString(8,location.creator);
+            stmtUpdate.setDouble(9,location.lon);		
+            stmtUpdate.setDouble(10,location.lat);
+            stmtUpdate.setInt(11, location.photos);
             n = stmtUpdate.executeUpdate();
             stmtUpdate.close();
         } catch(SQLException e) {
@@ -255,6 +276,7 @@ public class LocationData {
         }
         return n;
     }
+
 public static int updateLocation(Connection connection, LocationData location) {
     int result = 0;
     // Hier habe ich die Spaltennamen an dein SELECT-Statement angepasst (LocationName, AvgRating)
